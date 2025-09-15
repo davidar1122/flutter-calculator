@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Calculator',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 250, 253, 255)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 250, 253, 255)),
         useMaterial3: true,
       ),
       home: const CalculatorScreen(title: 'Calculator - David Arias'),
@@ -50,7 +51,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   void _evaluateExpression() {
     try {
       final parsedExpression = Expression.parse(_expression);
-      const evaluator = ExpressionEvaluator();
+      final evaluator = ExpressionEvaluator(); // fixed: remove const
       final evalResult = evaluator.eval(parsedExpression, {});
       _result = evalResult.toString();
       _expression = "$_expression = $_result"; // accumulator style
@@ -60,7 +61,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   }
 
   Widget _buildButton(String text,
-      {Color color = const Color.fromARGB(255, 78, 96, 105), Color textColor = Colors.white}) {
+      {Color color = const Color.fromARGB(255, 78, 96, 105),
+      Color textColor = Colors.white}) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(6.0),
@@ -75,7 +77,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           onPressed: () => _onButtonPressed(text),
           child: Text(
             text,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
           ),
         ),
       ),
@@ -103,7 +106,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 children: [
                   Text(
                     _expression,
-                    style: const TextStyle(fontSize: 28, color: Colors.white70),
+                    style:
+                        const TextStyle(fontSize: 28, color: Colors.white70),
                   ),
                   Text(
                     _result,
@@ -122,9 +126,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   _buildButton("9"),
                   Expanded(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Expanded(child: _buildButton("/", color: Colors.orange)),
-                        Expanded(child: _buildButton("%", color: Colors.orange)),
+                        Expanded(
+                            child: _buildButton("/", color: Colors.orange)),
+                        Expanded(
+                            child: _buildButton("%", color: Colors.orange)),
                       ],
                     ),
                   ),
@@ -149,7 +156,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               Row(
                 children: [
                   _buildButton("0"),
-                  _buildButton("C", color: Colors.red), // fixed Clear button
+                  _buildButton("C", color: Colors.red), // Clear button
                   _buildButton("=", color: Colors.green),
                   _buildButton("+", color: Colors.orange),
                 ],
