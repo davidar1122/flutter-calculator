@@ -120,7 +120,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   _buildButton("7"),
                   _buildButton("8"),
                   _buildButton("9"),
-                  _buildButton("/", color: Colors.orange),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(child: _buildButton("/", color: Colors.orange)),
+                        Expanded(child: _buildButton("%", color: Colors.orange)),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               Row(
@@ -142,7 +149,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               Row(
                 children: [
                   _buildButton("0"),
-                  _buildButton("Clear", color: Colors.red),
+                  _buildButton("C", color: Colors.red), // fixed Clear button
                   _buildButton("=", color: Colors.green),
                   _buildButton("+", color: Colors.orange),
                 ],
